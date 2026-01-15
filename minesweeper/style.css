@@ -1,0 +1,33 @@
+:root {
+    --color-text-black: #111111;
+    --color-bg-white: #ffffff;
+    --color-bg-gray: #6e6e6e;
+    --color-border-black: #111111;
+}
+
+.container{
+
+}
+.box{
+    border-style: solid;
+    border-color:var(--color-border-black);
+    padding: 24px 100px;
+    height: 400px;
+    width: 300px;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.level{
+    border-style: solid;
+    border-color: var(--color-border-black);
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
