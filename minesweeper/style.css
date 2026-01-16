@@ -1,33 +1,260 @@
 :root {
-    --color-text-black: #111111;
-    --color-bg-white: #ffffff;
-    --color-bg-gray: #6e6e6e;
-    --color-border-black: #111111;
+    --text: #111111;
+
+    /* 배경색 */
+    --page-bg: #f3f4f6; 
+
+    /* box 내부 배경색*/
+    --box-bg: #ffffff;
+    /* box 요소 색 */
+    --box-panel-color: rgb(210, 210, 210);
+    /* 테두리 색 */
+    --border: #e9ebee;
+    /* box 바깥쪽 radius */
+    --radius-box: 14px;
+    /* box 내부 요소 radius */
+    --radius-panel: 12px;
+    /* hover시 level색 */
+    --hover-bg: #86b3d6c3;
+    --shadow-hover: 0 10px 22px rgba(39, 57, 97, 0.551);
+
+    /* ms 배경색 */
+    --ms-bg: #bdbdbd;
+    --ms-black: #1f2937;
+    --ms-red: #fc0000;
+
+    --ms-border-dark: #7b7b7b;
+    --ms-border-light: #ffffff;
+
+    /* grid 내부 설정 */
+    --ms-padding: 8px;
+    --cell-size: 24px;
+    --cell-gap: 2px;
+    --grid-cols: 9;
+
 }
 
-.container{
-
+* {
+    box-sizing: border-box;
 }
-.box{
-    border-style: solid;
-    border-color:var(--color-border-black);
-    padding: 24px 100px;
-    height: 400px;
-    width: 300px;
+
+body {
+    margin: 0;
+    color: var(--text);
+    background: var(--page-bg);
+}
+
+a {
+    color: var(--text);
+    text-decoration: none;
+}
+
+h1, h2, h3 {
+    margin: 0;
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: 44px;
+    font-weight: 800;
+}
+
+h2 {
+    font-size: 30px;
+    font-weight: 800;
+    margin: 14px 0 18px;
+    text-align: center;
+}
+
+header {
+    text-align: center;
+    padding: 38px 16px 10px;
+}
+
+#title_name {
+    display: block;
+    text-align: center;
+    font-weight: 800;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 18px 16px 42px;
+}
+
+
+.box {
+    width: 90vw;
+    max-width: 720px;   
     margin: 0 auto;
 
+    background: var(--box-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-box);
+
+    padding: 22px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    gap: 16px;
+
+    box-shadow: 0 1px 0 rgba(0,0,0,.02);
 }
 
-.level{
-    border-style: solid;
-    border-color: var(--color-border-black);
+.level {
     height: 100px;
+    border-radius: var(--radius-panel);
+    
+    background: var(--box-panel-color);
+    border: 1px solid var(--border);
+
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
 
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 700px;
+
+    transition: transform 0.1s ease, box-shadow 0.1 ease,
+        background-color 0.1s ease, border-color 0.1s ease;
+}
+
+.level:hover {
+    background: var(--hover-bg);
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+    border-color: #e6e6e6c3;
+}
+
+/* 여기부터는 초/중/상급 page 관련 style */
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 10px 0 18px;
+}
+
+.back-link {
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 12px;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+    background: rgba(0, 0, 0, 0.17);
+}
+
+.subtitle {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--text);
+    padding: 8px 10px;
+    background: var(--box-bg);
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+}
+
+/* 지뢰찾기 layout */
+.ms-section {
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 8px;
+}
+
+.ms-header {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 10px;
+
+    background: var(--ms-bg);
+    padding: 8px;
+    border-top: 2px solid var(--ms-border-dark);
+    border-left: 2px solid var(--ms-border-dark);
+    border-right: 2px solid var(--ms-border-light);
+    border-bottom: 2px solid var(--ms-border-light);
+}
+
+.count, .clock {
+    width: 78px;
+    height: 34px;
+
+    background: var(--ms-black);
+    color: var(--ms-red);
+    font-size: 22px;
+    font-weight: 700;
+
+    text-align: center;
+
+    border-top: 2px solid var(--ms-border-dark);
+    border-left: 2px solid var(--ms-border-dark);
+    border-right: 2px solid var(--ms-border-light);
+    border-bottom: 2px solid var(--ms-border-light);
+}
+
+.empty-space {
+  height: 34px;
+  border-radius: 6px;
+
+  background: rgb(183, 180, 180);
+
+  border-top: 2px solid var(--ms-border-light);
+  border-left: 2px solid var(--ms-border-light);
+  border-right: 2px solid var(--ms-border-dark);
+  border-bottom: 2px solid var(--ms-border-dark);
+}
+
+.grid {
+  margin-top: 10px;
+  width: fit-content;
+
+  background: var(--ms-bg);
+  padding: var(--ms-padding);
+
+  border-top: 2px solid var(--ms-border-dark);
+  border-left: 2px solid var(--ms-border-dark);
+  border-right: 2px solid var(--ms-border-light);
+  border-bottom: 2px solid var(--ms-border-light);
+
+  display: grid;
+  gap: 2px;
+
+
+  grid-template-columns: repeat(var(--grid-cols), var(--cell-size));
+}
+
+
+.grid-9 {
+  --grid-cols: 9;
+}
+
+.grid-16 {
+  --grid-cols: 16;
+}
+
+.grid-30 {
+  --grid-cols: 30;
+}
+
+
+.cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+
+  background: #c9c9c9;
+  border-top: 2px solid var(--ms-border-light);
+  border-left: 2px solid var(--ms-border-light);
+  border-right: 2px solid var(--ms-border-dark);
+  border-bottom: 2px solid var(--ms-border-dark);
+}
+
+.cell:hover {
+  filter: brightness(0.8);
 }
